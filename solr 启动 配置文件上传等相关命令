@@ -1,1 +1,29 @@
 iostat  -x -d 1 //查看磁盘空间
+1.zookeeper 连接
+./zkCli.sh -server 10.10.74.148:12181
+
+****reload 
+http://10.10.72.73:8001/solr/admin/collections?action=RELOAD&name=rec_collection
+
+删除实例里面的所有数据，如下图四步，在第三步输入
+【
+<delete><query>*:*</query></delete>
+<commit/>
+】
+
+删除索引实例：
+http://10.10.72.73:8001/solr/admin/collections?action=DELETE&name=rec_collection
+
+2. 给zookeeper 上传配置文件
+cd /data1/www/solrCloud/solr-6.2.1/server/scripts/cloud-scripts
+./zkcli.sh -zkhost 11.11.11.111:12181 -cmd upconfig -confdir  recommend_core/conf  -confname recommend_collection
+
+单个文件上传：
+./zkcli.sh -zkhost 10.59.74.148:12181 -cmd putfile /configs/xf_collection/solrconfig.xml xf_core/conf/solrconfig.xml
+
+solr 本地debug
+solr restart -p 8983 -f -a "-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8983"
+
+./solr restart -p 18282 -f -a "-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=18282"
+
+
