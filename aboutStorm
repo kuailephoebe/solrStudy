@@ -1,1 +1,58 @@
 
+******************************************************************************************************************************
+1.storm dev st 启动方法
+*******************************************************************************************************************************
+（1）查看zk的状态：
+
+./zkServer.sh status
+（2）如果zk没有开启，将nimbus和supervisor的zk开启
+./zkServer.sh start
+
+（3）启动nimbus（切换到storm的bin目录下）
+
+nohup ./Nimbus/bin/storm nimbus & 
+
+（4）启动supervisor
+nohup ./Supervisor1/bin/storm supervisor  &
+
+（5）启动storm UI
+
+nohup ./Supervisor1/bin/storm ui & 
+
+./Nimbus/bin/storm jar ./Nimbus/bin/jars/datacenter-storm.jar com.pingan.hf.RecLogParse.Topology /data1/www/storm/Nimbus/conf/st
+
+在浏览器中输入ip:8080/index.html进入storm UI界面（注意端口不一定是8080，注意配置）
+
+需要进入 storm Nimbus 的Bin目录下面：
+./storm jar ./jars/datacenter-storm.jar com.pingan.hf.RecLogParse.Topology /data1/www/storm/Nimbus/conf/st
+./storm jar ./jars/datacenter-storm.jar com.pingan.hf.RecLogParse.Topology /data1/www/storm/Nimbus/conf/dev
+
+在如下目录查看日志解析
+storm 查看日志是否正确解析 ：/data1/www/storm/Supervisor1/logs/workers-artifacts/   dev-rec-log-parse-7-1500283070
+
+*******************************************************************************************************************************
+2. kafka的启动方法  ./bin/flume-ng agent -c conf -f conf/tongji-app.conf -n tongji-app-st -Dflume.root.logger=DEBUG,console &
+*******************************************************************************************************************************
+kafka生产者
+启动Zookeeper server： 
+./bin/zookeeper-server-start.sh config/zookeeper.properties &
+
+
+kafka启动：
+./bin/kafka-server-start.sh config/server.properties & 
+
+重置 topic的offsit
+
+*******************************************************************************************************************************
+3. flume的启动方法
+*******************************************************************************************************************************
+flume :
+启动程序 机器 10.10.74.45
+./flume-ng agent -c conf -f ../conf/datacenter-recommend.conf -n rec-anhouse & || ./flume-ng agent -c conf -f ../conf/datacenter-recommend.conf -n rec-st & ||./flume-ng agent -c conf -f ../conf/datacenter-recommend.conf -n rec-dev &
+
+配置文件路径：
+cd /data1/www/apache-flume-1.7.0-bin/conf
+现在改为如下：
+cd /data1/www/apache-flume-1.7.0-bin/bin
+./flume-ng agent -c conf -f ../conf/tongji-app.conf -n tongji-app-dev & //dev的启动
+./flume-ng agent -c conf -f ../conf/tongji-app.conf -n tongji-app-st &	//st的启动
