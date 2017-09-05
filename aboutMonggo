@@ -1,3 +1,4 @@
+全量更新字段中的字段：
 db.t_user_behavior.updateMany({"fangLabel.price":{$all:['-']}},
     { $set: { "fangLabel.price.$": '0_50' } });
 db.t_user_behavior.updateMany({"fangLabel.price":{$all:['10000_*']}},
