@@ -1,0 +1,4 @@
+db.t_user_behavior.updateMany({"fangLabel.price":{$all:['-']}},
+    { $set: { "fangLabel.price.$": '0_50' } });
+db.t_user_behavior.updateMany({"fangLabel.price":{$all:['10000_*']}},
+    { $set: { "fangLabel.price.$": '10000_900000' } });
