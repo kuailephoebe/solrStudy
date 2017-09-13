@@ -14,5 +14,13 @@ public class test {
 	}
 
 }
+输出：
+er,re	re	
+tmp1.length:4
+tmp2.length:3
 
 坑1：
+第二个参数的用法：
+-1 分割时不去除字符串最后的空格
+0 要去除空格
+大于0，要去除空格，并且数组不能超过过n
