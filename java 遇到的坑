@@ -1,1 +1,18 @@
 
+public class test {
+	
+	public static void main(String[] args) {
+//		String[] ds={"a","b"};
+//		System.out.println(ds.toString());
+//		System.out.println(StringUtils.join(ds, ","));
+		String[] tmp = "er	re	re	".toString().split("\t", 2);
+		String[] tmp1 = "er	re	re	".toString().split("\t", -1);
+		String[] tmp2 = "er	re	re	".toString().split("\t");
+		System.out.println(String.join(",", tmp));
+		System.out.println("tmp1.length:" + tmp1.length);
+		System.out.println("tmp2.length:" +tmp2.length);
+	}
+
+}
+
+坑1：
