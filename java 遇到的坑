@@ -59,3 +59,30 @@ Pattern. compile ( regex ). split ( str ,  n )
 
 
 参数： regex - 定界正则表达式 limit - 结果阈值，如上所述 返回： 字符串数组，它是根据给定正则表达式的匹配拆分此字符串确定的 抛出： PatternSyntaxException - 如果正则表达式的语法无效 
+
+maven 跳过测试
+运行mvn install时跳过Test
+ 
+方法一:
+<project>
+  [...]
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18.1</version>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  [...]
+</project>
+
+方法二:
+mvn install -DskipTests
+或者
+mvn install -Dmaven.test.skip=true
+ 
