@@ -47,7 +47,7 @@ kafka启动：
 3. flume的启动方法
 *******************************************************************************************************************************
 flume :
-启动程序 机器 10.10.74.45
+启动程序 机器 localhost
 ./flume-ng agent -c conf -f ../conf/datacenter-recommend.conf -n rec-anhouse & || ./flume-ng agent -c conf -f ../conf/datacenter-recommend.conf -n rec-st & ||./flume-ng agent -c conf -f ../conf/datacenter-recommend.conf -n rec-dev &
 
 配置文件路径：
